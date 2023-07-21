@@ -49,10 +49,13 @@ test("calls onAnswered after 10 seconds", () => {
   const onAnswered = jest.fn();
   render(<Question question={testQuestion} onAnswered={onAnswered} />);
   act(() => {
-    jest.advanceTimersByTime(11000);
+    jest.advanceTimersByTime(10000);
   });
+
+  // Check if onAnswered is called with the correct value (false)
   expect(onAnswered).toHaveBeenCalledWith(false);
 });
+
 
 test("clears the timeout after unmount", () => {
   jest.spyOn(global, 'clearTimeout');
